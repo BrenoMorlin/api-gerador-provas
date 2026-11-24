@@ -24,4 +24,14 @@
         <url-pattern>/questoes</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>QuestaoApiController</servlet-name>
+        <servlet-class>org.example.controller.QuestaoApiController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>QuestaoApiController</servlet-name>
+        <url-pattern>/api/questoes/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

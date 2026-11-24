@@ -12,7 +12,7 @@ public class QuestaoDAO {
         String sql = "INSERT INTO questao (enunciado, materia, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = ConexaoBD.getConexao();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+             PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, questao.getEnunciado());
             stmt.setString(2, questao.getMateria());
@@ -23,6 +23,12 @@ public class QuestaoDAO {
             stmt.setString(7, questao.getRespostaCorreta());
 
             stmt.executeUpdate();
+
+            try (ResultSet chaves = stmt.getGeneratedKeys()) {
+                if (chaves.next()) {
+                    questao.setId(chaves.getInt(1));
+                }
+            }
         }
     }
 
@@ -50,7 +56,7 @@ public class QuestaoDAO {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return montarQuestao(rs);
+                        return montarQuestao(rs);
                 }
             }
         }
