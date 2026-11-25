@@ -15,16 +15,6 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>QuestaoController</servlet-name>
-        <servlet-class>org.example.controller.QuestaoController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>QuestaoController</servlet-name>
-        <url-pattern>/questoes</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>QuestaoApiController</servlet-name>
         <servlet-class>org.example.controller.QuestaoApiController</servlet-class>
     </servlet>
