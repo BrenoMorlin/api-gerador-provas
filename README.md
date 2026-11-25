@@ -51,7 +51,7 @@ CREATE TABLE questao (
 | POST | `/api/questoes` | Cadastra uma questão | 201, 400 |
 | PUT | `/api/questoes/{id}` | Atualiza uma questão | 200, 400, 404 |
 | DELETE | `/api/questoes/{id}` | Exclui uma questão | 204, 404 |
-
+| GET | `/api/provas?materia=X&quantidade=N` | Gera uma prova com questões sorteadas da matéria | 200, 400, 404 |
 ### Exemplo de corpo (POST e PUT)
 
 ```json
@@ -74,4 +74,4 @@ Os erros voltam em JSON, por exemplo:
 { "erro": "Questão não encontrada." }
 ```
 
-A `respostaCorreta` precisa ser A, B, C ou D, e o enunciado e a matéria não podem ficar vazios (status 400).
+A `respostaCorreta` precisa ser A, B, C ou D, e o enunciado e a matéria não podem ficar vazios (status 400).    

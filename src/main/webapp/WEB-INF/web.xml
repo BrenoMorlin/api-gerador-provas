@@ -24,4 +24,14 @@
         <url-pattern>/api/questoes/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ProvaApiController</servlet-name>
+        <servlet-class>org.example.controller.ProvaApiController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProvaApiController</servlet-name>
+        <url-pattern>/api/provas</url-pattern>
+    </servlet-mapping>
+
 </web-app>
