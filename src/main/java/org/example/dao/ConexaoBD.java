@@ -1,16 +1,33 @@
 package org.example.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConexaoBD {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/gerador_provas";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "brn4headaB_1@";
+    private static final Properties config = carregarConfig();
+
+    private static Properties carregarConfig() {
+        Properties props = new Properties();
+        try (InputStream in = ConexaoBD.class.getClassLoader().getResourceAsStream("db.properties")) {
+            if (in == null) {
+                throw new IllegalStateException("Arquivo db.properties não encontrado em src/main/resources.");
+            }
+            props.load(in);
+        } catch (IOException e) {
+            throw new IllegalStateException("Erro ao ler o db.properties.", e);
+        }
+        return props;
+    }
 
     public static Connection getConexao() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, SENHA);
+        return DriverManager.getConnection(
+                config.getProperty("db.url"),
+                config.getProperty("db.usuario"),
+                config.getProperty("db.senha"));
     }
 }

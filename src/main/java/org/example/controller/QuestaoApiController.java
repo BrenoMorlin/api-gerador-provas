@@ -44,6 +44,7 @@ public class QuestaoApiController extends HttpServlet {
         } catch (NumberFormatException e) {
             enviarErro(response, 400, "O id precisa ser um número.");
         } catch (SQLException e) {
+            e.printStackTrace();
             enviarErro(response, 500, "Erro ao acessar o banco de dados.");
         }
 

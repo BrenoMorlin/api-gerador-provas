@@ -15,7 +15,7 @@ API REST em Java para cadastrar questões de prova, feita com Servlets, padrão 
 - `model`: a classe `Questao`, que representa uma questão
 - `dao`: acesso ao banco de dados (`QuestaoDAO` e `ConexaoBD`)
 - `service`: regras de negócio e validações (`QuestaoService`)
-- `controller`: recebe as requisições e devolve JSON (`QuestaoApiController`)
+- `controller`: recebe as requisições e devolve JSON (`QuestaoApiController` para o CRUD de questões e `ProvaApiController` para gerar provas)
 
 ## Como rodar
 
@@ -38,7 +38,16 @@ CREATE TABLE questao (
 );
 ```
 
-3. Em `ConexaoBD.java`, ajuste o usuário e a senha do seu MySQL.
+3. Crie o arquivo `src/main/resources/db.properties` com os dados do seu MySQL:
+
+```properties
+db.url=jdbc:mysql://localhost:3306/gerador_provas
+db.usuario=root
+db.senha=SUA_SENHA
+```
+
+Atenção: não deixe espaço depois da senha.
+
 4. Suba o servidor: `mvn tomcat7:run`
 5. A API fica em `http://localhost:8080/api/questoes`
 
@@ -52,6 +61,7 @@ CREATE TABLE questao (
 | PUT | `/api/questoes/{id}` | Atualiza uma questão | 200, 400, 404 |
 | DELETE | `/api/questoes/{id}` | Exclui uma questão | 204, 404 |
 | GET | `/api/provas?materia=X&quantidade=N` | Gera uma prova com questões sorteadas da matéria | 200, 400, 404 |
+
 ### Exemplo de corpo (POST e PUT)
 
 ```json
